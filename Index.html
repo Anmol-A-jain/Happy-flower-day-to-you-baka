@@ -10,7 +10,7 @@
             text-align: center;
             margin: 20px;
             background-color: #f4f4f4;
-            cursor: pointer; /* Indicates the user can click */
+            cursor: pointer; /* Indicates user can interact */
         }
         .sketchfab-embed-wrapper {
             max-width: 800px;
@@ -60,14 +60,27 @@
     </div>
 
     <script>
-        // Wait for user interaction to unmute audio
-        document.getElementById("pageBody").addEventListener("click", function () {
+        // Function to play audio
+        function playAudio() {
             var audio = document.getElementById("bg-music");
-            if (audio.muted) {
-                audio.muted = false; // Unmute audio on click
-                audio.play();
-                alert("Audio unmuted and playing.");
-            }
+            audio.muted = false; // Unmute audio
+            audio.play().then(() => {
+                console.log("Audio started successfully.");
+            }).catch(error => {
+                console.log("Autoplay blocked, waiting for user interaction.");
+            });
+        }
+
+        // Simulate a click event after a small delay
+        window.onload = function () {
+            setTimeout(() => {
+                document.body.click();
+            }, 1000); // Delay for better autoplay success
+        };
+
+        // Ensure playback on user interaction
+        document.body.addEventListener("click", function () {
+            playAudio();
         });
     </script>
 
