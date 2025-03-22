@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Sketchfab Model</title>
+    <title>Embedded Sketchfab Model with Background Music</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
+            background-color: #f4f4f4;
         }
         .sketchfab-embed-wrapper {
             max-width: 800px;
@@ -34,6 +35,12 @@
 
     <h2>Flower Lewisia (3D Model)</h2>
 
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="Audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="sketchfab-embed-wrapper"> 
         <iframe title="Flower Lewisia" 
             frameborder="0" 
@@ -50,6 +57,16 @@
             <a href="https://sketchfab.com" target="_blank">Sketchfab</a>
         </p>
     </div>
+
+    <script>
+        // Ensure the audio plays on user interaction due to browser autoplay policies
+        document.addEventListener('DOMContentLoaded', function () {
+            var audio = document.getElementById("bg-music");
+            audio.play().catch(error => {
+                console.log("Autoplay prevented, user interaction required.");
+            });
+        });
+    </script>
 
 </body>
 </html>
