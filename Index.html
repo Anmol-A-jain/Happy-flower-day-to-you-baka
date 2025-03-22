@@ -63,7 +63,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             var audio = document.getElementById("bg-music");
             audio.play().catch(error => {
-                console.log("Autoplay prevented, user interaction required.");
+                alert("Autoplay prevented, user interaction required.");
             });
         });
     </script>
