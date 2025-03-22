@@ -10,6 +10,7 @@
             text-align: center;
             margin: 20px;
             background-color: #f4f4f4;
+            cursor: pointer; /* Indicates the user can click */
         }
         .sketchfab-embed-wrapper {
             max-width: 800px;
@@ -31,13 +32,13 @@
         }
     </style>
 </head>
-<body>
+<body id="pageBody">
 
     <h2>Flower Lewisia (3D Model)</h2>
 
-    <!-- Background Music -->
-    <audio id="bg-music" autoplay loop>
-        <source src="instrumental-undertone-music-275398.mp3" type="audio/mpeg">
+    <!-- Background Music (Muted Initially) -->
+    <audio id="bg-music" autoplay loop muted>
+        <source src="Audio.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -59,12 +60,14 @@
     </div>
 
     <script>
-        // Ensure the audio plays on user interaction due to browser autoplay policies
-        document.addEventListener('DOMContentLoaded', function () {
+        // Wait for user interaction to unmute audio
+        document.getElementById("pageBody").addEventListener("click", function () {
             var audio = document.getElementById("bg-music");
-            audio.play().catch(error => {
-                alert("Autoplay prevented, user interaction required.");
-            });
+            if (audio.muted) {
+                audio.muted = false; // Unmute audio on click
+                audio.play();
+                console.log("Audio unmuted and playing.");
+            }
         });
     </script>
 
